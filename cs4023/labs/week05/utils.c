@@ -1,0 +1,12 @@
+
+char flipChar(char c)
+{
+  if ('a' <= c && c <= 'z') // a valid lowercase
+    return 'z'-(c- 'a');
+  else if('A' <= c && c<='Z')
+    return 'Z'-(c- 'A');
+  else if('9'>= c && c >= '0')
+    return '9'-(c- '0');
+
+  return c;
+}

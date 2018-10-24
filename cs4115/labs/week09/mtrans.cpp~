@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <list>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::cerr;
+using std::endl;
+using std::string;
+using std::list;
+using std::vector;
+using std::istringstream;
+using std::ostream;
+
+#include <math.h>
+#include <stdlib.h>
+class nz {	    // one instance for every non-zero entry in matrix
+public:
+  nz() { column = 0; value = 0.0; }
+  nz(int col, double val) {	// constructor when given the two items of data
+    column = col;
+    value = val;
+  }
+
+  int get_column() const { return column; } // access to ind class member
+  double get_value() const { return value; } // access to val class member
+  friend istringstream& operator>>(istringstream& is, nz& base);
+  friend ostream& operator<<(ostream &os, const nz& base);
+
+private:
+  int column;
+  double value;
+};

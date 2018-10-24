@@ -1,0 +1,30 @@
+gcc -c -g -Wall -pthread -o findvals.o findvals.c
+findvals.c: In function 'main':
+findvals.c:84:3: error: expected expression before '/' token
+   /
+   ^
+findvals.c:122:25: error: 'ref' undeclared (first use in this function)
+   shared_data->sh_ref = ref;
+                         ^
+findvals.c:122:25: note: each undeclared identifier is reported only once for each function it appears in
+findvals.c:132:3: error: unknown type name 'llist'
+   llist* plist=NULL; 
+   ^
+findvals.c:145:7: warning: implicit declaration of function 'print_list' [-Wimplicit-function-declaration]
+       print_list(plist);                  
+       ^
+findvals.c:75:16: warning: unused variable 'end' [-Wunused-variable]
+  time_t start, end;
+                ^
+findvals.c: In function 'runner':
+findvals.c:188:3: error: unknown type name 'llist'
+   llist* print_list=NULL;  
+   ^
+findvals.c:203:19: warning: implicit declaration of function 'add_list' [-Wimplicit-function-declaration]
+        print_list=add_list(print_list,r,c,sh_rows[r][c]);
+                   ^
+findvals.c:203:18: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+        print_list=add_list(print_list,r,c,sh_rows[r][c]);
+                  ^
+Makefile:32: recipe for target 'findvals.o' failed
+make: *** [findvals.o] Error 1

@@ -1,0 +1,64 @@
+#include <fstream>
+#include <iostream>
+
+using std::cin;
+using std::cout;
+using std::cerr;
+using std::endl;
+using std::ofstream;
+
+#include <math.h>
+#include <stdlib.h>
+
+void readArr(int, double **);
+void reFormat(int, double **);
+
+int main(int argc, char *argv[])
+{
+	int ac = atoi(argv[2]);
+  int ar = atoi(argv[1]);
+  
+
+  if (ac != ar)
+  {
+    cerr<< "Matrix dimensions mismatch; exiting.\n";
+    exit(-1);
+  }
+  	double **A = new double*[ar];	
+					
+  for (int i = 0; i < ar; i++)
+    A[i] = new double[ac];
+
+  	readArr(ar, A);
+	reFormat(ar ,A);
+
+}
+void reFormat(int r, double **arr)
+{
+	String out="";
+	int tcount=0;
+	int count,pos;
+	std::cout<<r;	
+	for (int i = 0; i < r; i++)
+		{
+			count=0;
+			for(int j= 0; j< r;j++)
+			{
+				if(!(arr[i][j]==0))
+					{
+						count++
+						pos=j+1;
+							 
+					}
+			}
+			std::cout<<count;
+			std::cout<<
+		}
+}
+void readArr(int r, double **arr)
+{	
+	for(int i =0; i < r;i++)
+		for(int j= 0;j< r;j++)
+				std::cin>>arr[i][j];
+}
+

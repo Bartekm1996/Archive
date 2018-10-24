@@ -1,0 +1,139 @@
+/*****************************************************
+* Skeleton Code for the lab exercise. DO NOT add any 
+* more printf statements other than those provided 
+* in this skeleton code. Otherwise, your output may 
+* not match with the desired output and you will be marked
+* down. Only modify the values printing with the given 
+* printf statements as appropriate. 
+*
+* Note: properly indent your code so it looks beautiful
+* to read. Also add BRIEF comments explaining your code. 
+* Poorly written code will be marked down.
+***************************************************/
+
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "utils.h"
+
+int main(int argc, char **argv)
+{
+  char *refStr, *tolStr;
+	float o,l,x;
+	int r,c;	
+	int count=0;
+  refStr = tolStr = NULL;
+
+  //Add code to read arguments, in ANY order i.e. -r can come before or after -t  
+ int re=(strcmp(argv[1], "-r") == 0)||(strcmp(argv[3], "-r")==1);
+ int t=(strcmp(argv[1], "-1") == 0)||(strcmp(argv[3], "-t")==1);
+if(re==0&&t==1)
+{
+	refStr=argv[2];
+	tolStr=argv[4];
+}
+else if(re==1&&t==0)
+{
+	refStr=argv[4];
+	tolStr=argv[2];
+}
+else
+{
+ return 1;
+}
+
+o= strtof(refStr,NULL);
+l= strtof(tolStr,NULL);
+if(l<0)//Makes the tolerence value positive makes testing easier
+{
+ 	l=l*-1;
+}
+
+
+
+
+  //Check if arguments were passed in correctly.
+  if (argc != 5 || refStr == NULL || tolStr == NULL)
+  {
+    fprintf(stderr, "Usage: %s -r ref -t tol\n", argv[0]);
+    exit(1);
+  }
+  //Add code to note start time and date and then print it. 
+  //Right now printing just a default string
+
+ time_t ti;
+ struct tm *tnd;
+time(&ti);
+tnd =localtime(&ti);
+printf("# Start time and date: %s",asctime (tnd) );
+	int rowc,columnc;
+	scanf("%d",&rowc);
+	scanf("%d",&columnc);
+float** rows = (float **) malloc(rowc * sizeof(float *));
+if (rows == 0)
+{
+fprintf(stderr, "Couldn't alocate sufficient space.\n");
+exit(1);
+}
+
+int i;
+for (i = 0; i < rowc; i++)
+{
+float* row = (float *) malloc(columnc * sizeof(float));
+if (row == 0)
+{
+fprintf(stderr, "Couldn't alocate sufficient row space.\n");
+exit(1);
+}
+rows[i]=row;
+}
+int j;
+for(i=0;i<rowc;i++)
+{
+ for(j=0;j<columnc;j++)
+	{
+		scanf("%f", &rows[i][j]);
+		 if(approxEquals(rows[i][j],o,l)==1)
+			{
+			count++;
+			fprintf(stdout, "r=%d, c=%d: %.6f\n", i, j, rows[i][j]);
+			}
+	}
+} 
+
+
+	
+
+
+
+
+
+
+
+
+
+  // The following print statement should be a part of a loop
+  // Uncomment it tailor it to your code but ONLY the part that 
+  // comes after:  \n",
+ 
+  
+
+
+
+  // output the final count of matches. Again, you may ONLY modify
+  // the part of the print statement after:  \n",
+  fprintf(stdout, "Found %d approximate matches.\n", count);
+
+	
+
+  //finally, print out the end time and date. Right now only printing
+  //a default string. 
+	time(&ti);
+	tnd= localtime(&ti);
+printf("# End time and date: %s",asctime (tnd) );
+
+
+  return 0;
+}

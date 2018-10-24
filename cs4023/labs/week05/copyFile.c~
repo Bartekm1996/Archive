@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "utils.h"
+int main(int argc, char*argv[])
+{
+  int flipping = (strcmp(argv[1], "-f") == 0);
+  char c;
+  FILE *from,*to;/*declare file address to with file address from*/
+  if (flipping)
+    {
+       from = fopen(argv[2], "r");
+       to=fopen(argv[3],"w+");
+    }
+  else
+    {
+      from = fopen(argv[1], "r");
+      to=fopen(argv[2],"w+");/*open in Write mode*/
+    }
+  if (from == NULL)
+  {
+    perror("file.txt");
+    exit(1);
+  }
+
+  /* file exists, so start reading */
+  while ((c = getc(from)) != EOF){
+    if(flipping )
+      putc(flipChar(c),to);
+    else 
+      putc(c, to);
+  }
+  fclose(to);
+  fclose(from);/*Close both files that have been opened*/
+
+  exit(0);
+}
+
+
+  
+  
